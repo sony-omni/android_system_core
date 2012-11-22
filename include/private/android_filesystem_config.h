@@ -73,6 +73,9 @@
 #define AID_LOOP_RADIO    1030  /* loop radio devices */
 #define AID_MEDIA_DRM     1031  /* MediaDrm plugins */
 #define AID_AUDIT         1032  /* audit daemon */
+#ifdef QCOM_FM_ENABLED
+#define AID_FM_RADIO      1033  /* FM radio */
+#endif
 
 #define AID_THEMEMAN      1300  /* theme manager */
 
@@ -187,6 +190,9 @@ static const struct android_id_info android_ids[] = {
     { "mot_dlna",  AID_MOT_DLNA, },
 #endif
     { "misc",      AID_MISC, },
+#ifdef QCOM_FM_ENABLED
+    { "fm_radio",  AID_FM_RADIO, },
+#endif
     { "nobody",    AID_NOBODY, },
     { "clat",      AID_CLAT, },
     { "mediadrm",  AID_MEDIA_DRM, },
