@@ -90,6 +90,9 @@ struct {
     { "persist.service.", AID_SYSTEM,   0 },
     { "persist.service.", AID_RADIO,    0 },
     { "persist.security.",AID_SYSTEM,   0 },
+#ifdef QCOM_FM_ENABLED
+    { "hw.fm.",           AID_FM_RADIO, 0 },
+#endif
     { "net.pdp",          AID_RADIO,    AID_RADIO },
     { NULL, 0, 0 }
 };
@@ -108,6 +111,9 @@ struct {
 } control_perms[] = {
     { "dumpstate",AID_SHELL, AID_LOG },
     { "ril-daemon",AID_RADIO, AID_RADIO },
+#ifdef QCOM_FM_ENABLED
+    { "fm_dl", AID_FM_RADIO, AID_FM_RADIO},
+#endif
      {NULL, 0, 0 }
 };
 /* Avoid extending this array. Check device_perms.h */
