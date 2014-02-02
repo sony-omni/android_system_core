@@ -126,6 +126,7 @@ enum {
     /* cmdType to play recording sound */
     CAMERA_CMD_PLAY_RECORDING_SOUND = 5,
 
+
     /**
      * Start the face detection. This should be called after preview is started.
      * The camera will notify the listener of CAMERA_MSG_FACE and the detected
@@ -209,6 +210,15 @@ enum {
     /** The facing of the camera is the same as that of the screen. */
     CAMERA_FACING_FRONT = 1
 };
+
+#ifdef QCOM_HARDWARE
+enum {
+    CAMERA_SUPPORT_MODE_2D = 0x01, /* Camera Sensor supports 2D mode. */
+    CAMERA_SUPPORT_MODE_3D = 0x02, /* Camera Sensor supports 3D mode. */
+    CAMERA_SUPPORT_MODE_NONZSL = 0x04, /* Camera Sensor in NON-ZSL mode. */
+    CAMERA_SUPPORT_MODE_ZSL = 0x08 /* Camera Sensor supports ZSL mode. */
+};
+#endif
 
 enum {
     /** Hardware face detection. It does not use much CPU. */
