@@ -127,6 +127,7 @@ int lookup_keyword(const char *s)
         if (!strcmp(s, "kdir")) return K_mkdir;
         if (!strcmp(s, "ount_all")) return K_mount_all;
         if (!strcmp(s, "ount")) return K_mount;
+	if (!strcmp(s, "knod")) return K_mknod;
         break;
     case 'o':
         if (!strcmp(s, "n")) return K_on;
@@ -832,7 +833,7 @@ static void parse_line_service(struct parse_state *state, int nargs, char **args
         svc->envvars = ei;
         break;
     }
-    case K_socket: {/* name type perm [ uid gid ] */
+    case K_socket: {/* name type perm [ uid gid context ] */
         struct socketinfo *si;
         if (nargs < 4) {
             parse_error(state, "socket option requires name, type, perm arguments\n");
@@ -855,6 +856,8 @@ static void parse_line_service(struct parse_state *state, int nargs, char **args
             si->uid = decode_uid(args[4]);
         if (nargs > 5)
             si->gid = decode_uid(args[5]);
+        if (nargs > 6)
+            si->socketcon = args[6];
         si->next = svc->sockets;
         svc->sockets = si;
         break;
